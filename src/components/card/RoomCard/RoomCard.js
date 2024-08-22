@@ -5,7 +5,7 @@ import styles from './RoomCard.styles';
 const RoomCard = () => {
     return(
     
-        <View>
+        <View style={styles.container} >
             <Text>
                 Room Card
             </Text>
