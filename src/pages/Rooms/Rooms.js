@@ -1,15 +1,28 @@
-import React from "react";
-import {View, Text, SafeAreaView} from "react-native";
+import React, { useState } from "react";
+import {View, Text, FlatList, SafeAreaView} from "react-native";
 import RoomCard from "../../components/card/RoomCard/RoomCard";
+import ContentInputModal from "../../components/modal/ContentInputModal/ContentInputModal";
+import FloatingButton from "../../components/FloatingButton";
 import styles from './Rooms.styles';
 
+
 const Rooms = () => {
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    function handleToggle(){
+        setModalVisible(!modalVisible);
+    }
+
     return(
         <SafeAreaView style={{backgroundColor: '#ffffff', flex: 1}} >
-            <View  style={styles.container}  >
-                <RoomCard />
-                <RoomCard />
-            </View>
+            <FlatList />
+            <FloatingButton icon="plus" onPress={handleToggle} />
+      <ContentInputModal
+        visible={modalVisible}
+        onClose={handleToggle}
+        onSend={null}
+      />
         </SafeAreaView>
     )
 }

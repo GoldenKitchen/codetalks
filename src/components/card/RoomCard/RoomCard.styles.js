@@ -11,6 +11,12 @@ export default StyleSheet.create({
         borderRadius: 5,
         borderColor: '#eceff1'
 
+    },
+
+    title: {
+        color: '#ff6f00',
+        fontSize: 20,
+        fontWeight: 'bold',
     }
 
 })

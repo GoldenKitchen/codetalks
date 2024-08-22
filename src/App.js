@@ -7,6 +7,7 @@ import Rooms from './pages/Rooms/Rooms';
 import SignUp from './pages/SignUp/SignUp';
 import FlashMessage from 'react-native-flash-message';
 import auth from '@react-native-firebase/auth';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,7 +42,14 @@ function App({navigation}) {
           :
           <Stack.Screen options={{
             headerShown: true,
-            headerTintColor: '#ff6f00',
+            headerTintColor: '#ffa041',
+            headerRight: () => 
+            <Icon 
+            name="logout" 
+            size={20}
+            color='#ffa041'
+            onPress = {() => auth().signOut()}
+            />
             }} name="Odalar" component={Rooms} />
         }
       </Stack.Navigator>
