@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "904594950693",
+    "project_id": "fir-2-990b6",
+    "storage_bucket": "fir-2-990b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904594950693:android:97e08993c2639172b10dcc",
+        "android_client_info": {
+          "package_name": "com.codetalks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrUsvbr-0rfyHmDg_XmXD7BmkcueMJABM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
