@@ -7,7 +7,6 @@ import Modal from 'react-native-modal';
 const ContentInputModal = ({visible, onClose, onSend}) => {
 
     const [text, setText] = useState('');
-    
     function handleSend() {
         console.log('input', text)
         if (!text){

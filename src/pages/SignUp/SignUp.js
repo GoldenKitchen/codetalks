@@ -63,8 +63,8 @@ const SignUp = ({navigation}) => {
                 placeholder="şifrenizi giriniz..." 
                 isSecure
                 />
-                <Button onPress={handleSubmit} type="primary" buttonText="Kayıt Ol" />
-                <Button onPress={handleLogin} type="secondary" buttonText="Geri" />
+                <Button onPress={handleSubmit} type="primary" text="Kayıt Ol" />
+                <Button onPress={handleLogin} type="secondary" text="Geri" />
             </View>
         </SafeAreaView>
             </>

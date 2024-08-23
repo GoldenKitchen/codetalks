@@ -12,5 +12,14 @@ export default StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 50,
         //alignSelf: 'flex-end'
+    },
+
+    input_container:{
+        flex:1,
+    },
+
+    modal: {
+        justifyContent: 'flex-end',
+        margin: 0,
     }
 })

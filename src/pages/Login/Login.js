@@ -53,8 +53,8 @@ function Login({navigation}) {
             isSecure
             />
 
-          <Button onPress={handleSubmit} type="primary" buttonText="Giriş Yap" />
-          <Button onPress={handleSignUp} type="secondary"  buttonText="Kayıt Ol" />
+          <Button onPress={handleSubmit} type="primary" text="Giriş Yap" />
+          <Button onPress={handleSignUp} type="secondary"  text="Kayıt Ol" />
         </View>
           </>
         )}

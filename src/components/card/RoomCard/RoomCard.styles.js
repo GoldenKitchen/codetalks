@@ -5,18 +5,17 @@ export default StyleSheet.create({
         borderWidth: 1,
         margin: 10,
         height: 100,
-        width: '50%',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 5,
-        borderColor: '#eceff1'
+        borderColor: '#eceff1',
+        flex: 1
 
     },
 
     title: {
-        color: '#ff6f00',
+        color: '#ffa041',
         fontSize: 20,
         fontWeight: 'bold',
     }
-
 })
