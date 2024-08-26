@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp/SignUp';
 import FlashMessage from 'react-native-flash-message';
 import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ChatRoom from './pages/ChatRoom/ChatRoom';
 
 const Stack = createNativeStackNavigator();
 
@@ -52,6 +53,7 @@ function App({navigation}) {
             />
             }} name="Odalar" component={Rooms} />
         }
+        <Stack.Screen options={{headerShown: true,}} name="ChatRoom" component={ChatRoom}/>
       </Stack.Navigator>
       <FlashMessage position="top"/>
     </NavigationContainer>

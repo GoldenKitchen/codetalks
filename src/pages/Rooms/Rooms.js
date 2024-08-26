@@ -1,65 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, SafeAreaView, StyleSheet } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import RoomCard from '../../components/card/RoomCard/RoomCard';
 import ContentInputModal from '../../components/modal/ContentInputModal/ContentInputModal';
 import FloatingButton from '../../components/FloatingButton';
 import database from '@react-native-firebase/database';
 import styles from './Rooms.styles';
 
-const Rooms = () => {
+const Rooms = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [contentList, setContentList] = useState([]);
 
   useEffect(() => {
-    const reference = database().ref('rooms/roomName/');
+    const reference = database().ref('rooms/');
 
     const onValueChange = reference.on('value', snapshot => {
-      const data = snapshot.val();
-      console.log('Veri:', data); 
-      if (data) {
-        const formattedData = Object.keys(data).map(key => ({
-          uniqueId: key,
-          odaAdı: data[key]
-        }));
+      const contentData = snapshot.val();
+      if (contentData) {
+        // Format data
+         const formattedData = Object.keys(contentData).map(key => ({
+           id: key,
+           ...contentData[key],
+         }));
+         
+
         setContentList(formattedData);
       } else {
         setContentList([]);
       }
     });
+
+    // Cleanup function to remove the listener
     return () => reference.off('value', onValueChange);
   }, []);
-
-  // Firebase'e veri ekleme
-  function sendContent(content) {
-    if (content) {
-      const newRef = database().ref('rooms/roomName/').push();
-      newRef.set(content)
-        .then(() => {
-          console.log('İçerik başarıyla eklendi');
-        })
-        .catch(error => {
-          console.error('İçerik eklenirken hata oluştu: ', error);
-        });
-    }
-  }
-
-  function handleToggle() {
-    setModalVisible(!modalVisible);
-  }
 
   function handleSendContent(content) {
     handleToggle();
     sendContent(content);
   }
 
+  function sendContent(content) {
+    const contentObject = {
+      roomName: content,
+    };
+
+    database().ref('rooms/').push(contentObject)
+      .then(() => console.log('Room added successfully'))
+      .catch(error => console.error('Failed to add room:', error));
+  }
+
+  function handleToggle() {
+    setModalVisible(!modalVisible);
+  }
+
+  const renderContent = ({ item }) => (
+    <RoomCard
+      id={item.id}
+      data={item}
+      onPress={() => navigation.navigate('ChatRoom', { roomId: item.id, chatRoomName: item.roomName })}
+    />
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-      
         data={contentList}
-        renderItem={({ item }) => <RoomCard data={item} />}
-        keyExtractor={(item) => item.uniqueId} // Her öğeye benzersiz anahtar
-        numColumns= {2}
+        renderItem={renderContent}
+        keyExtractor={(item) => item.id}
       />
       <FloatingButton name={'plus'} onPress={handleToggle} />
       <ContentInputModal
@@ -70,4 +76,11 @@ const Rooms = () => {
     </SafeAreaView>
   );
 };
+
+const localStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
 export default Rooms;

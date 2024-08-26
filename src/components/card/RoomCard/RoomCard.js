@@ -2,12 +2,13 @@ import React from "react";
 import {View, Text, TouchableOpacity} from 'react-native';
 import styles from './RoomCard.styles';
 
-const RoomCard = ({data}) => {
-    return(
+const RoomCard = ({data, onPress, id}) => {
     
-        <TouchableOpacity  style={styles.container} >
+    
+    return(
+        <TouchableOpacity onPress={onPress}  style={styles.container} >
             <Text style={styles.title} >
-                {data.odaAdı}
+                {data.roomName}  
             </Text>
         </TouchableOpacity>
     )
